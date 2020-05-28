@@ -89,7 +89,8 @@ class ContextBase : public RootInterface,
                     public MetricsInterface,
                     public SharedDataInterface,
                     public SharedQueueInterface,
-                    public GeneralInterface {
+                    public GeneralInterface,
+                    public TraceInterface {
 public:
   ContextBase();                                                   // Testing.
   ContextBase(WasmBase *wasm);                                     // Vm Context.
@@ -299,6 +300,11 @@ public:
   }
 
   WasmResult getHeaderMapSize(WasmHeaderMapType /* type */, uint32_t * /* result */) override {
+    return unimplemented();
+  }
+
+  // Tracing
+  WasmResult activeSpanSetTag(string_view /* key */, string_view /* value */) override {
     return unimplemented();
   }
 

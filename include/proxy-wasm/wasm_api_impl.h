@@ -261,6 +261,13 @@ inline WasmResult proxy_call_foreign_function(const char *function_name, size_t 
       WS(arguments_size), WR(results), WR(results_size)));
 }
 
+// Tracing
+inline WasmResult proxy_set_active_span_tag(const char *key_ptr, size_t key_size,
+                                            const char *value_ptr, size_t value_size) {
+  return wordToWasmResult(exports::set_active_span_tag(current_context_, WR(key_ptr), WS(key_size),
+                                                       WR(value_ptr), WS(value_size)));
+}
+
 #undef WS
 #undef WR
 

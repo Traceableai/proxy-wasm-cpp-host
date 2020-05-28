@@ -647,4 +647,14 @@ struct SharedQueueInterface {
   virtual WasmResult enqueueSharedQueue(SharedQueueEnqueueToken token, string_view data) = 0;
 };
 
+struct TraceInterface {
+  virtual ~TraceInterface() = default;
+  /**
+   * Add a key-value tag to a span.
+   * @param key is the key (tag).
+   * @param value is the value (tag value).
+   */
+  virtual WasmResult activeSpanSetTag(string_view key, string_view value) = 0;
+};
+
 } // namespace proxy_wasm
